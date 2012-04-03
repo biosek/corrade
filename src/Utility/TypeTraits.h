@@ -20,12 +20,32 @@
  * @brief Type traits
  */
 
+#include <type_traits>
+
 namespace Corrade { namespace Utility {
 
 /**
+@brief Cast value of strongly typed enum to its underlying type
+@param enumValue    Enum value
+
+Shorthand for verbose code such as this:
+@code
+enum class Enum: unsigned int {
+    Value
+};
+
+unsigned int value = static_cast<std::underlying_type<Enum>::type>(Enum::Value);
+unsigned int value = castToUnderlyingType(Enum::Value);
+@endcode
+*/
+template<class T> constexpr auto castToUnderlyingType(T enumValue) -> typename std::underlying_type<T>::type {
+    return static_cast<typename std::underlying_type<T>::type>(enumValue);
+}
+
+/**
 @brief Macro for creating traits class for checking whether an class has given inner type
-@param type          Inner type to look for
-@param className     Resulting trait class name
+@param type         Inner type to look for
+@param className    Resulting trait class name
 
 See @ref Corrade::Utility::IsIterable "IsIterable" class documentation for an example.
 */
