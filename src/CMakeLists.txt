@@ -1,4 +1,4 @@
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -pedantic -std=c++0x")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wzero-as-null-pointer-constant -pedantic -std=c++0x")
 
 include_directories(${CORRADE_INCLUDE_DIR})
 
